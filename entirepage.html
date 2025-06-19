@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('CANTEEN ITEMS/main page.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .header a:hover {
+            text-decoration: underline;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+        }
+        .user-info i {
+            margin-right: 10px;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <a href="#" id="adminLink">Admin Login</a>
+            <a href="#" id="studentLink">Student Login</a>
+        </div>
+        <div class="user-info" id="user-info">
+            <i class="fas fa-user"></i> 
+            <span id="username">Guest</span>
+        </div>
+    </div>
+
+    <script>
+
+        
+    // TEMPORARY: Simulate Login (for demo)
+    let user = {
+        firstName: "BUDIDA",
+        lastName: "VAISHNAVI",
+        email: "vaishnavireddy818@gamil.com",
+        password: "abcdef"
+    };
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+
+       
+       let loggedInUser = localStorage.getItem("loggedInUser");
+
+if (loggedInUser) {
+    try {
+        const userObj = JSON.parse(loggedInUser);
+        document.getElementById("username").textContent = userObj.firstName + " " + userObj.lastName;
+    } catch (e) {
+        document.getElementById("username").textContent = "Guest";
+    }
+} else {
+    document.getElementById("username").textContent = "Guest";
+}
+
+        
+        document.getElementById("adminLink").addEventListener("click", function(event) {
+            if (document.getElementById("username").textContent === "Guest") {
+                event.preventDefault();
+                alert("You must be logged in to access the Admin Panel.");
+            } else {
+                window.location.href = "admin.html";
+            }
+        });
+
+        document.getElementById("studentLink").addEventListener("click", function(event) {
+            if (document.getElementById("username").textContent === "Guest") {
+                event.preventDefault();
+                alert("You must be logged in to access the Student Panel.");
+            } else {
+                window.location.href = "studentadmin.html"; 
+            }
+        });
+
+       
+        function loginUser(name) {
+            localStorage.setItem("loggedInUser", name);
+            document.getElementById("username").textContent = name;
+        }
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup page</title>
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            background-image: url('CANTEEN ITEMS/background.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+        }     
+
+        .login {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            justify-content: center;
+            margin-top: 150px;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .icon-box {
+            background-color: blue; 
+            padding: 8px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-box svg {
+            fill: white; 
+        }
+
+        input {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            background: blue;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="login">
+        <h2>SIGNUP</h2>
+        
+        <div class="input-container">
+            <span class="icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M185-80q-17 0-29.5-12.5T143-122v-105q0-90 56-159t144-88q-40 28-62 70.5T259-312v190q0 11 3 22t10 20h-87Zm147 0q-17 0-29.5-12.5T290-122v-190q0-70 49.5-119T459-480h189q70 0 119 49t49 119v64q0 70-49 119T648-80H332Zm148-484q-66 0-112-46t-46-112q0-66 46-112t112-46q66 0 112 46t46 112q0 66-46 112t-112 46Z"/></svg>
+            </span>
+            <input type="text" id="name" placeholder="Enter name" required>
+        </div>
+
+        <div class="input-container">
+            <span class="icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-80q-83 0-156.5-31.5T200-199q-54-54-85.5-127.5T83-480q0-86 31.5-159T200-767q54-54 127.5-85.5T480-883q86 0 159 31.5T767-767q54 54 85.5 127.5T883-480q0 86-31.5 159T767-199q-54 54-127.5 85.5T480-80Zm0-80q118 0 199-81t81-199q0-118-81-199t-199-81q-118 0-199 81t-81 199q0 118 81 199t199 81Zm-42-160h83q13 0 21.5-8.5T552-350q0-13-8.5-21.5T522-380h-32v-20q0-13-8.5-21.5T460-430q-13 0-21.5 8.5T430-400v30q0 13 8.5 21.5T460-340h32v20q0 13 8.5 21.5T522-290q13 0 21.5-8.5T552-320v-30q0-13-8.5-21.5T522-380h-42q-13 0-21.5-8.5T460-410v-30q0-13-8.5-21.5T430-470q-13 0-21.5 8.5T400-440v50q0 13 8.5 21.5T430-370h42q13 0 21.5 8.5T502-340v30q0 13-8.5 21.5T470-290q-13 0-21.5-8.5T440-320v-30q0-13-8.5-21.5T410-380q-13 0-21.5 8.5T380-350v50q0 13 8.5 21.5T410-270Z"/></svg>
+            </span>
+            <input type="email" id="email" placeholder="Enter email" required>
+        </div>
+
+        <div class="input-container">
+            <span class="icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>
+            </span>
+            <input type="password" id="password" placeholder="Enter password" required>
+            <button type="button" onclick="togglePassword('password')">👁️</button>
+        </div>
+
+        <div class="input-container">
+            <span class="icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>
+            </span>
+            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+            <button type="button" onclick="togglePassword('confirmPassword')">👁️</button>
+        </div>
+
+        <button onclick="return validateSignupForm()">SIGN UP</button>
+
+        <p>Already have an account? <a href="studentadmin.html">Login</a></p>
+    </div>
+    <script>
+        function togglePassword(fieldId) {
+            const input = document.getElementById(fieldId);
+            input.type = input.type === "password" ? "text" : "password";
+        }
+
+        function validateSignupForm() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const confirmPassword = document.getElementById("confirmPassword").value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+            if (name === "") {
+                alert("Name cannot be empty.");
+                return false;
+            }
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters.");
+                return false;
+            }
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            alert("Signup successful!");
+            return true;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+

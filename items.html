@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>items list</title>
+   
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: aqua;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        }
+    .heading{
+        text-align: center;
+        margin-left: 600px;
+    }
+    
+    header {
+        background-color: black;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .required {
+        color: red;
+        font-weight: bold;
+    }
+    
+    .head2{
+        font-size: 50px;
+    }
+    .menu-item, .cart-item {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .menu-image, .cart-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    
+    
+    .menu-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+    }
+    
+    .menu-item {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px;
+        width: 200px;
+        text-align: center;
+    
+    }
+    
+    button {
+        background-color: #28a745;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #218838;
+    }
+    
+    .cart {
+        font-size: 20px;
+    }
+</style>
+<body>
+    <header>
+        <h1 class="heading">SIEI CANTEEN</h1>
+        <div class="cart">
+            🛒 <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="head2">MENU</h2>
+        <div class="menu-container" id="menu">
+        </div>
+
+        <h2>YOUR CART</h2>
+        <div id="cart-items">
+            
+        </div>
+        <button id="place-order">PLACE ORDER</button>
+    </main>
+
+    <script> function togglePassword() {
+        const passwordInput = document.getElementById("password");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text"; // Show password
+        } else {
+            passwordInput.type = "password"; //hidinh
+        }
+    }
+    
+    const menuItems = [
+        { id: 1, name: "CHICKEN RICE", price: 70, image: " CANTEEN ITEMS/CHICKEN FRIED RICE.jpg" },
+        { id: 2, name: "BIRYANI", price: 100, image:"CANTEEN ITEMS/VEG BIRYANI.jpg " },
+        { id: 3, name: "CHICKEN NOODLES", price: 80,image:"CANTEEN ITEMS/chicken noodles.jpg"  },
+        { id: 4, name: "SAMOSA", price: 20, image: "CANTEEN ITEMS/SAMOSA.webp" },
+        { id: 5, name: "EGG RICE", price: 80,image:"CANTEEN ITEMS/EGG RICE.jpg"  },
+        { id: 6, name: "BISCUITS", price: 10,image:"CANTEEN ITEMS/BISCUITS.jpg"  }
+    ];
+    
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    const menuContainer = document.getElementById("menu");
+    menuItems.forEach(item => {
+        const menuItemDiv = document.createElement("div");
+        menuItemDiv.classList.add("menu-item");
+        menuItemDiv.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" class="menu-image">
+            <h3>${item.name}</h3>
+            <p>₹${item.price}</p>
+            <button onclick="addToCart(${item.id})">ADD TO CART</button>
+        `;
+        menuContainer.appendChild(menuItemDiv);
+    });
+    
+    function addToCart(id) {
+        const item = menuItems.find(menuItem => menuItem.id === id);
+        const existingItem = cart.find(cartItem => cartItem.id === id);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ ...item, quantity: 1 });
+        }
+    
+        updateCart();
+    }
+    
+    function updateCart() {
+        const cartContainer = document.getElementById("cart-items");
+        cartContainer.innerHTML = "";
+        let total = 0;
+    
+        cart.forEach((item, index) => {
+            total += item.price * item.quantity;
+            const cartItemDiv = document.createElement("div");
+            cartItemDiv.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="cart-image">
+                ${item.name} - ₹${item.price} x ${item.quantity} 
+                <button onclick="decreaseQuantity(${index})">➖</button>
+                <button onclick="increaseQuantity(${index})">➕</button>
+                <button onclick="removeFromCart(${index})">❌</button>
+            `;
+            cartContainer.appendChild(cartItemDiv);
+        });
+    
+        document.getElementById("cart-count").innerText = cart.length;
+        cartContainer.innerHTML += `<p><strong>Total: ₹${total}</strong></p>`;
+        
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+    
+    function increaseQuantity(index) {
+        cart[index].quantity += 1;
+        updateCart();
+    }
+    
+    function decreaseQuantity(index) {
+        if (cart[index].quantity > 1) {
+            cart[index].quantity -= 1;
+        } else {
+            cart.splice(index, 1);
+        }
+        updateCart();
+    }
+    
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+    }
+    
+    document.getElementById("place-order").addEventListener("click", () => {
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+        } else {
+            alert("Order placed successfully!");
+            cart = [];
+            updateCart();
+        }
+    });
+    updateCart();
+    </script>
+</body>
+</html>
+
+

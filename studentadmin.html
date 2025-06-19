@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student Login Page</title>
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('CANTEEN ITEMS/background.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+        }
+        .login-container {
+            display: flex;
+            justify-content: space-around;
+            width: 70%;
+        }
+        .login {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 70%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            width: 77%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <!-- Student Login Form -->
+        <div class="login">
+            <h2>STUDENT LOGIN</h2>
+            <input type="text" id="rollno" placeholder="Enter Roll Number" required>
+            <input type="text" id="studentName" placeholder="Enter Your Name" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <button onclick="studentLogin()">LOGIN</button>
+        </div>
+    </div>
+
+    <script>
+        // Handle student login
+        function studentLogin() {
+            const rollNo = document.getElementById("rollno").value.trim();
+            const password = document.getElementById("password").value.trim();
+    
+            if (rollNo === "") {
+                alert("Roll Number cannot be empty.");
+                return false;
+            }
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters.");
+                return false;
+            }
+            alert("Student login successful!");
+            window.location.href = 'items.html'; // Redirect to student page
+        }
+    </script>
+</body>
+</html>

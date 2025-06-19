@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin page</title>s
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url('CANTEEN ITEMS/background.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .login-container, .dashboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        .login, .dashboard {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input {
+            width: 70%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            width: 77%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .dashboard-item {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Admin Login and Dashboard</h1>
+    </div>
+
+    <!-- Admin Login Form -->
+    <div class="login-container" id="login-container">
+        <div class="login">
+            <h2>Admin Login</h2>
+            <input type="text" id="adminUsername" placeholder="Enter Admin Username" required>
+            <input type="password" id="adminPassword" placeholder="Enter Password" required>
+            <button onclick="loginAdmin()">LOGIN</button>
+            <p id="errorMessage" style="color: red; display: none;">Invalid admin credentials</p>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard (Hidden initially) -->
+    <div class="dashboard-container" id="dashboard-container" style="display: none;">
+        <div class="dashboard">
+            <h2>Welcome to the Admin Dashboard</h2>
+            <div class="dashboard-item">
+                <h3>Manage Canteen Items</h3>
+                <button onclick="window.location.href='manage_items.html'">Manage Items</button>
+            </div>
+            <div class="dashboard-item">
+                <h3>View Orders</h3>
+                <button onclick="window.location.href='view_orders.html'">View Orders</button>
+            </div>
+            <div class="dashboard-item">
+                <h3>Generate Reports</h3>
+                <button onclick="window.location.href='generate_reports.html'">Generate Reports</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loginAdmin() {
+            const adminUsername = document.getElementById('adminUsername').value.trim();
+            const adminPassword = document.getElementById('adminPassword').value.trim();
+
+            // Check if admin credentials match
+            if (adminUsername === 'admin' && adminPassword === 'admin123') {
+                // Hide the login form and show the dashboard
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('dashboard-container').style.display = 'block';
+            } else {
+                // Show error message
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
